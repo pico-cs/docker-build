@@ -23,14 +23,14 @@ cd docker-build
 DOCKER_BUILDKIT=1 docker build --output type=local,dest=. --build-arg PICO_CS_WIFI_SSID="YourWiFiSSID" --build-arg PICO_CS_WIFI_PASSWORD="YourWiFiPassword" --no-cache .
 ```
 
-The build command does not have any line breaks (one command in one line). Please be aware that the dot at the end is part of the command and please replace the WiFi build arguments SSID and password with your wlan configuration settings. Changing the TCP port is supported via the additional build argument PICO_CS_TCP_PORT (if not defined, the default port 4242 is used):
+Please be aware that the dot at the end is part of the command and please replace the WiFi build arguments SSID and password with your wlan configuration settings. Changing the TCP port is supported via the additional build argument PICO_CS_TCP_PORT (if not defined, the default port 4242 is used):
 
 ```
 cd docker-build
 DOCKER_BUILDKIT=1 docker build --output type=local,dest=. --build-arg PICO_CS_WIFI_SSID="YourWiFiSSID" --build-arg PICO_CS_WIFI_PASSWORD="YourWiFiPassword" --build-arg PICO_CS_TCP_PORT=4242 --no-cache .
 ```
 
-The build is creating a subdirectory 'build' where the binaries could be found:
+The build is creating a subdirectory 'build' where the binaries can be found:
 
 ```
 ├── build
