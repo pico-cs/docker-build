@@ -1,1 +1,62 @@
-# docker-buld
+# pico-cs docker-build
+[![REUSE status](https://api.reuse.software/badge/github.com/pico-cs/docker-build)](https://api.reuse.software/info/github.com/pico-cs/docker-build)
+![](https://github.com/pico-cs/docker-build/workflows/build/badge.svg)
+
+## Why docker-build
+
+As a pico-cs user you might only be interested in installing the neccessary software
+- [Pico / Pico W firmware](https://github.com/pico-cs/firmware) and
+- the [MQTT gateway](https://github.com/pico-cs/mqtt-gateway)
+
+instead of dealing with the different SDKs and toolchains needed to build on your local environment.
+
+So here we are using the nice [Docker build capabilities](https://www.docker.com/) to get the things done.
+
+## Usage
+
+To use the docker-build you need to have a running docker environment. For install instructions please consult the [docker installation documention](https://docs.docker.com/engine/install/).
+
+After cloning this repository the docker build can be started:
+
+```
+cd docker-build
+DOCKER_BUILDKIT=1 docker build --output type=local,dest=. --build-arg PICO_CS_WIFI_SSID="YourWiFiSSID" --build-arg PICO_CS_WIFI_PASSWORD="YourWiFiPassword" --no-cache .
+```
+
+The build command does not have any line breaks (one command in one line). Please be aware that the dot at the end is part of the command and please replace the WiFi build arguments SSID and password with your wlan configuration settings. Changing the TCP port is supported via the additional build argument PICO_CS_TCP_PORT (if not defined, the default port 4242 is used):
+
+```
+cd docker-build
+DOCKER_BUILDKIT=1 docker build --output type=local,dest=. --build-arg PICO_CS_WIFI_SSID="YourWiFiSSID" --build-arg PICO_CS_WIFI_PASSWORD="YourWiFiPassword" --build-arg PICO_CS_TCP_PORT=4242 --no-cache .
+```
+
+The build is creating a subdirectory 'build' where the binaries could be found:
+
+```
+├── build
+│   ├── darwin
+│   │   ├── amd64
+│   │   │   └── gateway         // MQTT gateway for MacOS
+│   │   └── arm64
+│   │       └── gateway         // MQTT gateway for ARM based Mac (M1, M2, ...)
+│   ├── firmware
+│   │   ├── cs.uf2              // firmware for the Raspberry Pi Pico
+│   │   └── cs_w.uf2            // firmware for the Raspberry Pi Pico W
+│   ├── linux
+│   │   ├── amd64
+│   │   │   └── gateway         // MQTT gateway for Linux
+│   │   └── arm64
+│   │       └── gateway         // MQTT gateway for ARM based Linux
+│   ├── raspos
+│   │   └── gateway             // MQTT gateway for Raspberry Pi OS
+│   └── windows
+│       ├── amd64
+│       │   └── gateway.exe     // MQTT gateway for Windows
+│       └── arm64
+│           └── gateway.exe     // MQTT gateway for ARM based Windows
+```
+
+## Licensing
+
+Copyright 2021-2022 Stefan Miller and pico-cs contributers. Please see our [LICENSE](LICENSE.md) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/pico-cs/docker-build).
+
