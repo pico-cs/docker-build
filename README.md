@@ -10,7 +10,7 @@ As a pico-cs user you might only be interested in installing the neccessary soft
 
 instead of dealing with the different SDKs and toolchains needed to build on your local environment.
 
-So here we are using the nice [Docker build capabilities](https://www.docker.com/) to get the things done.
+So we are using the nice [Docker build capabilities](https://www.docker.com/) to get things done.
 
 ## Usage
 
@@ -33,27 +33,28 @@ DOCKER_BUILDKIT=1 docker build --output type=local,dest=. --build-arg PICO_CS_WI
 The build is creating a subdirectory 'build' where the binaries can be found:
 
 ```
-├── build
-│   ├── darwin
-│   │   ├── amd64
-│   │   │   └── gateway         // MQTT gateway for MacOS
-│   │   └── arm64
-│   │       └── gateway         // MQTT gateway for ARM based Mac (M1, M2, ...)
-│   ├── firmware
-│   │   ├── cs.uf2              // firmware for the Raspberry Pi Pico
-│   │   └── cs_w.uf2            // firmware for the Raspberry Pi Pico W
-│   ├── linux
-│   │   ├── amd64
-│   │   │   └── gateway         // MQTT gateway for Linux
-│   │   └── arm64
-│   │       └── gateway         // MQTT gateway for ARM based Linux
-│   ├── raspos
-│   │   └── gateway             // MQTT gateway for Raspberry Pi OS
-│   └── windows
-│       ├── amd64
-│       │   └── gateway.exe     // MQTT gateway for Windows
-│       └── arm64
-│           └── gateway.exe     // MQTT gateway for ARM based Windows
+build/
+├── firmware                // firmware
+│   ├── cs.uf2              // - Raspberry Pi Pico
+│   └── cs_w.uf2            // - Raspberry Pi Pico W
+└── gateway                 // MQTT gateway
+    ├── darwin
+    │   ├── amd64
+    │   │   └── gateway     // - MacOS
+    │   └── arm64
+    │       └── gateway     // - ARM based Mac (M1, M2, ...)
+    ├── linux
+    │   ├── amd64
+    │   │   └── gateway     // - Linux
+    │   └── arm64
+    │       └── gateway     // - ARM based Linux
+    ├── raspos
+    │   └── gateway         // - Raspberry Pi OS
+    └── windows
+        ├── amd64
+        │   └── gateway.exe // Windows
+        └── arm64
+            └── gateway.exe // ARM based Windows
 ```
 
 ## Licensing

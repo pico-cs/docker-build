@@ -15,14 +15,14 @@ RUN git clone -b main https://github.com/pico-cs/mqtt-gateway.git
 WORKDIR /pico/pico-cs/mqtt-gateway/cmd/gateway
 
 ## build for target os architecture
-RUN GOOS=linux   GOARCH="amd64" go build -v -o /build/linux/amd64/
-RUN GOOS=linux   GOARCH="arm64" go build -v -o /build/linux/arm64/
-RUN GOOS=darwin  GOARCH="amd64" go build -v -o /build/darwin/amd64/
-RUN GOOS=darwin  GOARCH="arm64" go build -v -o /build/darwin/arm64/
-RUN GOOS=windows GOARCH="amd64" go build -v -o /build/windows/amd64/
-RUN GOOS=windows GOARCH="arm64" go build -v -o /build/windows/arm64/
+RUN GOOS=linux   GOARCH="amd64" go build -v -o /build/gateway/linux/amd64/
+RUN GOOS=linux   GOARCH="arm64" go build -v -o /build/gateway/linux/arm64/
+RUN GOOS=darwin  GOARCH="amd64" go build -v -o /build/gateway/darwin/amd64/
+RUN GOOS=darwin  GOARCH="arm64" go build -v -o /build/gateway/darwin/arm64/
+RUN GOOS=windows GOARCH="amd64" go build -v -o /build/gateway/windows/amd64/
+RUN GOOS=windows GOARCH="arm64" go build -v -o /build/gateway/windows/arm64/
 ### Raspberry Pi on Raspberry Pi OS
-RUN GOOS=linux GOARCH=arm GOARM=7 go build -v -o /build/raspos/
+RUN GOOS=linux GOARCH=arm GOARM=7 go build -v -o /build/gateway/raspos/
 
 ## build Raspberry Pi Pico firmware
 FROM debian as firmware-build
