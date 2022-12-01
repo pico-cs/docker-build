@@ -25,7 +25,7 @@ RUN GOOS=windows GOARCH="arm64" go build -v -o /build/gateway/windows/arm64/
 RUN GOOS=linux GOARCH=arm GOARM=7 go build -v -o /build/gateway/raspos/
 
 ## build Raspberry Pi Pico firmware
-FROM debian as firmware-build
+FROM debian:bullseye as firmware-build
 
 ARG PICO_CS_WIFI_SSID="MyWifiName"
 ENV PICO_CS_WIFI_SSID ${PICO_CS_WIFI_SSID}
