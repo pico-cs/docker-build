@@ -14,11 +14,14 @@ So we are using the nice [Docker build capabilities](https://www.docker.com/) to
 
 ## Usage
 
-To use the docker-build you need to have a running docker environment. For install instructions please consult the [docker installation documention](https://docs.docker.com/engine/install/).
+To use the pico-cs docker-build you need to have
+- [git](https://git-scm.com/) installed on your local computer.
+- a running [docker](https://www.docker.com/) environment. For install instructions please consult the [installation](https://docs.docker.com/engine/install/).
 
 After cloning this repository the docker build can be started:
 
 ```
+git clone https://github.com/pico-cs/docker-build.git
 cd docker-build
 DOCKER_BUILDKIT=1 docker build --output type=local,dest=. --build-arg PICO_CS_WIFI_SSID="YourWiFiSSID" --build-arg PICO_CS_WIFI_PASSWORD="YourWiFiPassword" --no-cache .
 ```
